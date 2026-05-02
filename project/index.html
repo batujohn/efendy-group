@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Efendy Group — An Anatolian Culinary Journey</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { margin: 0; background: var(--color-bone); }
+  body { font-family: var(--font-body); color: var(--fg-1); -webkit-font-smoothing: antialiased; }
+  *, *::before, *::after { box-sizing: border-box; }
+  [data-screen-label] { scroll-margin-top: 80px; }
+  ::selection { background: var(--color-ink); color: var(--color-bone); }
+  /* dark canvas tweak */
+  body[data-canvas="dark"] { background: #14110E; }
+  body[data-canvas="dark"] {
+    --color-bone: #EDE6D7;
+    --color-paper: #1B1815;
+    --color-cream: #221E1A;
+    --color-ink: #EDE6D7;
+    --color-ink-soft: #C9C0AE;
+    --color-warm-grey: #8C857A;
+    --color-line: #2E2924;
+    --hairline: #2E2924;
+    --fg-1: #EDE6D7;
+    --fg-2: #C9C0AE;
+    --fg-3: #8C857A;
+    --bg-1: #1B1815;
+    --bg-2: #14110E;
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body id="top">
+<div id="app"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const VENUES = [
+  {
+    id: 'efendy-istanbul', name: 'Efendy İstanbul', location: 'Beşiktaş, İstanbul', year: 'Est. 2007',
+    cuisine: 'Anatolian · Fine Dining', tagline: 'The inaugural brand of the group, reborn on the Bosphorus.',
+    image: 'assets/images/efendy-istanbul.jpg',
+    description: 'Born in Australia in 2007 as the inaugural brand of the group, Efendy draws inspiration from the diverse flavors of Anatolian cuisine. Our menu is a testament to the culture of complete sharing — traditional recipes prepared using ingredients cultivated on these historic lands and cooked with time-honoured techniques.'
+  },
+  {
+    id: 'anason', name: 'Anason', location: '23 Barangaroo Avenue, Sydney', year: 'Est. 2016',
+    cuisine: 'Modern Turkish Tavern · Rakı & Meze', tagline: 'The spirit of an Istanbul meyhane, on Darling Harbour.',
+    image: 'assets/images/anason.jpg',
+    description: 'Inspired by the modern meyhanes of Istanbul, Anason merges traditional meze culture with the beverages of Turkey — rakı and local wines — in the cosmopolitan setting of Barangaroo. RCNSW Best Specialty Restaurant 2022–2025.'
+  },
+  {
+    id: 'maydanoz', name: 'Maydanoz', location: '50 Carrington St, Sydney CBD', year: 'Est. 2021',
+    cuisine: 'Aegean Meze · Wood Fire', tagline: 'Olive oil, vegetable and fire — the meze bars of the Aegean coast.',
+    image: 'assets/images/maydanoz.jpg',
+    description: 'Maydanoz is an Aegean Turkish bar and restaurant paying homage to the vegetarian and olive oil-driven casual meze bars of the coast. Produce-driven, wood-fired, and guided by a "nose to tail, no waste" philosophy. SMH 1 Hat 2024 & 2025.'
+  },
+  {
+    id: 'hamsi', name: 'Hamsi Taverna', location: 'Sydney Fish Market, Pyrmont', year: 'Est. 2026',
+    cuisine: 'Aegean Seafood · Charcoal', tagline: 'Where Aegean tavern culture meets contemporary Australian dining.',
+    image: 'assets/images/hamsi.jpg',
+    description: 'Named after Türkiye\u2019s Black Sea anchovy, Hamsi is inspired by the seaside taverns dotted along the Aegean coast. Charcoal is the main ingredient — skewered sardines, kataifi-wrapped king prawns, sujuk-butter scallops — alongside a fish sandwich set to the Bosphorus.'
+  }
+];
+
+function App() {
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "canvas": "light",
+    "venueLayout": "grid"
+  }/*EDITMODE-END*/;
+
+  const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    document.body.dataset.canvas = tweaks.canvas;
+  }, [tweaks.canvas]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const { TweaksPanel, TweakSection, TweakRadio } = window;
+
+  return (
+    <div data-screen-label="Home">
+      <Nav onDark={true} scrolled={scrolled} />
+      <Hero />
+      <EditorialIntro />
+
+      {/* Venue section header */}
+      <section data-screen-label="Brands Header" style={{padding: '40px 48px 48px', background: 'var(--color-bone)'}}>
+        <div style={{maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 40, flexWrap: 'wrap'}}>
+          <div>
+            <Eyebrow style={{marginBottom: 18}}>Five distinctive brands</Eyebrow>
+            <h2 style={{fontFamily: 'var(--font-display)', fontWeight: 300, fontSize: 'clamp(36px,4.4vw,64px)', margin: 0, letterSpacing: '-0.005em', textTransform: 'none', lineHeight: 1.05, color: 'var(--color-ink)'}}>
+              A table for any kind of evening,<br/>across two cities.
+            </h2>
+          </div>
+          <div style={{fontFamily: 'var(--font-display)', fontWeight: 300, fontStyle: 'italic', fontSize: 19, color: 'var(--fg-3)', maxWidth: 360, lineHeight: 1.5}}>
+            From Anatolian fire to Aegean greenery, each brand is a different room in the same house.
+          </div>
+        </div>
+      </section>
+
+      {tweaks.venueLayout === 'rows' ? (
+        <section style={{display: 'flex', flexDirection: 'column'}}>
+          {VENUES.map((v, i) => <VenueRow key={v.id} venue={v} reverse={i % 2 === 1} index={i} total={VENUES.length} />)}
+        </section>
+      ) : (
+        <VenueGrid venues={VENUES} />
+      )}
+
+      <Awards />
+      <News />
+      <Cookbooks />
+      <PrivateDining />
+      <Newsletter />
+      <Footer />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Canvas" subtitle="Light is the brand default. Dark is exploratory.">
+          <TweakRadio
+            value={tweaks.canvas}
+            onChange={v => setTweak('canvas', v)}
+            options={[{value: 'light', label: 'Light'}, {value: 'dark', label: 'Dark'}]}
+          />
+        </TweakSection>
+        <TweakSection title="Venue layout" subtitle="Editorial alternating rows, or a tighter 2-column grid.">
+          <TweakRadio
+            value={tweaks.venueLayout}
+            onChange={v => setTweak('venueLayout', v)}
+            options={[{value: 'rows', label: 'Rows'}, {value: 'grid', label: 'Grid'}]}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+</script>
+</body>
+</html>

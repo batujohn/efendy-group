@@ -1,0 +1,128 @@
+/* ============================================================
+   Anyday Design System — Colors & Type
+   Sourced from anyday.com.au observations + brand photography.
+   ============================================================ */
+
+/* ---------- Webfonts ----------
+   The site is a Squarespace template using a refined neutral
+   palette and editorial typography. We approximate using
+   Google Fonts: 
+     - "Cormorant Garamond" → display serif (close to the Agnes
+       wordmark and the page H1 / About headline aesthetic)
+     - "Forum" or "Italiana" alt for finer didone moments
+     - "Inter" → fallback UI text
+     - "Archivo" → wide sans for "ANYDAY" wordmark feel (the
+       wordmark itself is letterspaced uppercase wide sans)
+   ---------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ---------- Brand Colors ----------
+     The site lives in warm neutrals — off-white paper, deep
+     near-black ink, a cream/sand secondary, and warm shadow.
+     ---------------------------------------------------------- */
+
+  /* Core neutrals */
+  --color-ink:        #1A1A1A;   /* near-black; primary text & wordmark */
+  --color-ink-soft:   #2B2826;   /* slightly warm dark for body */
+  --color-bone:       #F4EFE6;   /* off-white "Anyday Off White" */
+  --color-paper:      #FAF7F1;   /* lightest page background */
+  --color-cream:      #EBE3D3;   /* warm cream secondary surface */
+  --color-sand:       #D9CDB6;   /* deeper sand divider/accent */
+  --color-warm-grey:  #8C857A;   /* muted body text on bone */
+  --color-line:       #C9BFA9;   /* hairline rules on cream */
+
+  /* Atmosphere accents (drawn from venue photography) */
+  --color-ember:      #B6552B;   /* Agnes — woodfire orange */
+  --color-burgundy:   #5C1F22;   /* Le Royale — velvet curtain */
+  --color-olive:      #5C5A3E;   /* LOS — green-rendered bar */
+  --color-terracotta: #A8593A;   /* Bianca — Italian warmth */
+
+  /* Semantic */
+  --fg-1: var(--color-ink);
+  --fg-2: var(--color-ink-soft);
+  --fg-3: var(--color-warm-grey);
+  --fg-on-dark: var(--color-bone);
+  --bg-1: var(--color-paper);
+  --bg-2: var(--color-bone);
+  --bg-3: var(--color-cream);
+  --bg-dark: var(--color-ink);
+  --hairline: var(--color-line);
+
+  /* ---------- Type ---------- */
+  /* Canela (Commercial Type) is the brand display face. Falls back to Cormorant. */
+  --font-display: "Canela", "Canela Web", "Cormorant", "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-wordmark: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale (editorial, generous) */
+  --fs-display-xl: clamp(48px, 7vw, 96px);
+  --fs-display-l:  clamp(40px, 5vw, 64px);
+  --fs-display-m:  clamp(32px, 4vw, 48px);
+  --fs-h1:         clamp(28px, 3vw, 40px);
+  --fs-h2:         24px;
+  --fs-h3:         18px;
+  --fs-body:       16px;
+  --fs-small:      14px;
+  --fs-eyebrow:    12px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Radius — Anyday uses nearly square; very subtle rounding only on form fields */
+  --radius-0: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Elevation — minimal, photo-led; shadows are rare */
+  --shadow-soft: 0 1px 2px rgba(26,26,26,0.06), 0 6px 24px rgba(26,26,26,0.04);
+  --shadow-image: 0 18px 48px rgba(26,26,26,0.18);
+
+  /* Motion */
+  --ease-quiet: cubic-bezier(.22,.61,.36,1);
+  --dur-quick: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
+}
+
+/* ---------- Semantic typography classes ---------- */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--fg-2);
+}
+
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 400;
+  letter-spacing: 0.42em;   /* Anyday wordmark is heavily tracked */
+  text-transform: uppercase;
+}
+
+.display-xl { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-xl); line-height: 1.04; letter-spacing: -0.01em; color: var(--fg-1); }
+.display-l  { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-l);  line-height: 1.08; letter-spacing: -0.005em; color: var(--fg-1); }
+.display-m  { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-display-m);  line-height: 1.12; color: var(--fg-1); }
+
+h1, .h1 { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h1); line-height: 1.16; color: var(--fg-1); margin: 0; }
+h2, .h2 { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-h2); line-height: 1.2;  color: var(--fg-1); margin: 0; letter-spacing: 0.02em; text-transform: uppercase; }
+h3, .h3 { font-family: var(--font-body);    font-weight: 500; font-size: var(--fs-h3); line-height: 1.3; color: var(--fg-1); margin: 0; }
+
+p, .body { font-family: var(--font-body); font-weight: 400; font-size: var(--fs-body); line-height: 1.6; color: var(--fg-2); margin: 0; }
+.body-lead { font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1.45; color: var(--fg-1); }
+.small { font-family: var(--font-body); font-size: var(--fs-small); line-height: 1.5; color: var(--fg-3); }
+
+a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; transition: opacity var(--dur-quick) var(--ease-quiet); }
+a:hover { opacity: 0.6; }
