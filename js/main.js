@@ -21,7 +21,7 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Nav Scroll Behavior ---------- */
+  /* ---------- Nav Scroll Behavior + Hamburger ---------- */
   function initNav() {
     var nav = document.getElementById('site-nav') || document.getElementById('sub-nav');
     if (!nav) return;
@@ -30,6 +30,28 @@
     }
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    var hamburger = document.getElementById('nav-hamburger');
+    if (hamburger) {
+      hamburger.addEventListener('click', function () {
+        var isOpen = nav.classList.toggle('menu-open');
+        hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+      });
+      // Close menu when a nav link is clicked
+      nav.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+          nav.classList.remove('menu-open');
+          hamburger.setAttribute('aria-label', 'Open menu');
+        });
+      });
+      // Close on outside click
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target)) {
+          nav.classList.remove('menu-open');
+          hamburger.setAttribute('aria-label', 'Open menu');
+        }
+      });
+    }
   }
 
   /* ---------- Gallery Slider ---------- */
@@ -84,6 +106,18 @@
       // Pause on hover
       slider.addEventListener('mouseenter', function () { paused = true; });
       slider.addEventListener('mouseleave', function () { paused = false; });
+
+      // Touch swipe
+      var touchStartX = 0;
+      slider.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        paused = true;
+      }, { passive: true });
+      slider.addEventListener('touchend', function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) go(diff > 0 ? idx + 1 : idx - 1);
+        paused = false;
+      }, { passive: true });
     });
   }
 

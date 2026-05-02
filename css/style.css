@@ -2206,3 +2206,358 @@ p { margin: 0; }
   color: var(--color-ink);
   line-height: 1.2;
 }
+
+/* ============================================================
+   RESPONSIVE STYLES
+   Breakpoints: 1024px (tablet), 768px (mobile), 480px (small)
+   ============================================================ */
+
+/* ---------- Hamburger Button ---------- */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  color: inherit;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 300ms var(--ease-quiet), opacity 200ms;
+}
+.site-nav.menu-open .nav-hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.site-nav.menu-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.site-nav.menu-open .nav-hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ========================================
+   1024px — Tablet landscape
+   ======================================== */
+@media (max-width: 1024px) {
+
+  /* Nav */
+  .site-nav { padding: 0 40px; }
+
+  /* Hero */
+  .hero-content { padding: 0 40px 80px; }
+
+  /* Editorial */
+  .editorial-intro-inner { padding: 100px 40px; gap: 48px; }
+
+  /* Venues */
+  .venues-header-inner { padding: 80px 40px; }
+  .venue-grid-inner { padding: 0 40px 100px; grid-template-columns: 1fr 1fr; }
+
+  /* Awards */
+  .awards-section-inner { padding: 80px 40px; }
+  .awards-grid { grid-template-columns: 1fr 1fr; }
+  .award-item:nth-child(3n+1),
+  .award-item:nth-child(3n+2) { border-right: none; }
+  .award-item:nth-child(odd)  { border-right: 1px solid var(--hairline); }
+
+  /* News */
+  .news-section-inner { padding: 80px 40px; }
+  .news-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Cookbooks */
+  .cookbooks-inner { padding: 80px 40px; gap: 48px; }
+
+  /* Private dining */
+  .private-dining-inner { padding: 80px 40px; gap: 48px; }
+
+  /* Newsletter */
+  .newsletter-inner { padding: 80px 40px; }
+
+  /* Footer */
+  .footer-inner { padding: 72px 40px 40px; }
+  .footer-venues { grid-template-columns: 1fr 1fr; gap: 40px; }
+
+  /* Venue pages */
+  .venue-intro { padding: 100px 40px 80px; }
+  .montage { padding: 0 40px; }
+  .menu-cta { padding: 60px 40px; }
+  .pull-quote { padding: 80px 40px; }
+  .the-room-text { padding: 80px 48px; }
+  .venue-feature-dark { padding: 120px 40px; }
+  .visit-section { padding: 100px 40px; }
+  .the-bar-text { padding: 80px 48px; }
+  .chefs-table-text { padding: 80px 48px; }
+
+  /* Subpages */
+  .subpage-hero-inner,
+  .subpage-hero-dark-inner { padding: 130px 40px 60px; }
+  .cards-grid-section { padding: 0 40px 100px; }
+  .careers-values { padding: 100px 40px; }
+  .careers-roles { padding: 0 40px 100px; }
+  .contact-form-section { padding: 0 40px 100px; }
+  .quote-section { padding: 100px 40px; }
+  .gifts-newsletter { padding: 100px 40px; }
+
+}
+
+/* ========================================
+   768px — Tablet portrait / mobile
+   ======================================== */
+@media (max-width: 768px) {
+
+  /* ---- Nav ---- */
+  .site-nav { padding: 0 24px; position: relative; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bone);
+    flex-direction: column;
+    padding: 16px 24px 28px;
+    border-bottom: 1px solid var(--hairline);
+    gap: 0;
+    z-index: 99;
+  }
+  .site-nav.scrolled .nav-links { background: var(--color-bone); }
+  .site-nav.menu-open .nav-links { display: flex; }
+  .nav-link {
+    padding: 14px 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--hairline);
+    letter-spacing: 0.12em;
+  }
+  .nav-link:last-child { border-bottom: none; }
+
+  /* ---- Sub-nav ---- */
+  .sub-nav { padding: 0 20px; gap: 12px; }
+  .back-link { font-size: 11px; }
+  .venue-name { font-size: 12px; letter-spacing: 0.14em; }
+  .sub-nav .btn { font-size: 10px; padding: 10px 16px; }
+
+  /* ---- Hero ---- */
+  .hero-content { padding: 0 24px 56px; }
+  .hero-eyebrow { font-size: 10px; }
+  .hero-desc { font-size: 14px; padding: 0 24px 40px; max-width: 100%; }
+  .hero-scroll-hint { display: none; }
+
+  /* ---- Editorial intro ---- */
+  .editorial-intro-inner {
+    padding: 72px 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* ---- Venues header ---- */
+  .venues-header-inner {
+    padding: 64px 24px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .venues-header-tagline { max-width: 100%; font-size: 15px; }
+
+  /* ---- Venue grid ---- */
+  .venue-grid-inner {
+    padding: 0 24px 72px;
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- Awards ---- */
+  .awards-section-inner { padding: 64px 24px; }
+  .awards-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .award-item:nth-child(odd) { border-right: none; }
+
+  /* ---- News ---- */
+  .news-section-inner { padding: 64px 24px; }
+  .news-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .news-grid { grid-template-columns: 1fr; }
+
+  /* ---- Cookbooks ---- */
+  .cookbooks-inner { padding: 64px 24px; grid-template-columns: 1fr; }
+  .cookbooks-image { display: none; }
+  .cookbooks-text-btns { flex-direction: column; gap: 12px; align-items: flex-start; }
+
+  /* ---- Private dining ---- */
+  .private-dining-inner { padding: 64px 24px; grid-template-columns: 1fr; }
+  .private-dining-image { display: none; }
+
+  /* ---- Newsletter ---- */
+  .newsletter-inner { padding: 64px 24px; }
+  .newsletter-form { flex-direction: column; align-items: stretch; gap: 12px; }
+  .newsletter-inner h2 { font-size: clamp(22px, 5vw, 32px); }
+
+  /* ---- Footer ---- */
+  .footer-inner { padding: 56px 24px 32px; }
+  .footer-top { flex-direction: column; gap: 10px; }
+  .footer-top h2 { font-size: clamp(28px, 6vw, 40px); }
+  .footer-venues { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { grid-template-columns: 1fr; gap: 32px; }
+  .footer-legal { flex-direction: column; gap: 10px; text-align: left; }
+  .footer-legal-links { gap: 16px; }
+
+  /* ---- Venue hero ---- */
+  .venue-hero .hero-content { bottom: 40px; }
+
+  /* ---- Venue intro ---- */
+  .venue-intro { padding: 72px 24px 64px; }
+  .venue-intro-inner { grid-template-columns: 1fr; gap: 40px; }
+  .venue-meta-row { flex-wrap: wrap; gap: 20px; }
+
+  /* ---- Montage ---- */
+  .montage { padding: 0 24px; }
+  .montage-inner { grid-template-columns: 1fr; gap: 16px; }
+  .montage-item-1 { margin-top: 0; }
+  .montage-item-1 img,
+  .montage-item-2 img { height: 56vw; min-height: 240px; }
+
+  /* ---- Menu CTA ---- */
+  .menu-cta { padding: 56px 24px; }
+  .menu-cta-heading { font-size: clamp(32px, 7vw, 48px); margin-bottom: 40px; }
+  .menu-cta-grid { grid-template-columns: 1fr; }
+  .menu-cta-item { padding: 28px 0; }
+
+  /* ---- Gallery ---- */
+  .gallery-section .gallery-header-inner { padding: 40px 24px; }
+  .gallery-slider { height: 62vw; min-height: 260px; }
+  .gallery-prev,
+  .gallery-next { opacity: 0.8; width: 40px; height: 40px; font-size: 18px; }
+  .gallery-prev { left: 16px; }
+  .gallery-next { right: 16px; }
+  .gallery-caption { font-size: 11px; }
+
+  /* ---- Pull quote ---- */
+  .pull-quote { padding: 72px 24px; }
+
+  /* ---- The Room ---- */
+  .the-room-inner { grid-template-columns: 1fr; min-height: auto; }
+  .the-room-text { padding: 64px 24px; order: 2; }
+  .the-room-image { min-height: 300px; order: 1; }
+  .room-specs { grid-template-columns: 1fr 1fr; }
+
+  /* ---- Venue feature dark (Hamsi Street etc.) ---- */
+  .venue-feature-dark { padding: 72px 24px; }
+  .venue-feature-dark-inner { grid-template-columns: 1fr; gap: 40px; }
+  .venue-feature-dark-image img { height: 300px; }
+  .venue-feature-dark-btns { flex-direction: column; align-items: flex-start; }
+
+  /* ---- Visit section ---- */
+  .visit-section { padding: 72px 24px; }
+  .visit-section h2 { margin-bottom: 40px; }
+  .visit-grid { grid-template-columns: 1fr; gap: 0; }
+  .visit-col-label { margin-top: 24px; }
+
+  /* ---- The Bar ---- */
+  .the-bar-inner { grid-template-columns: 1fr; min-height: auto; }
+  .the-bar-text { padding: 64px 24px; order: 2; }
+  .the-bar-image { min-height: 300px; order: 1; }
+  .the-bar-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---- Chef's Table ---- */
+  .chefs-table-inner { grid-template-columns: 1fr; min-height: auto; }
+  .chefs-table-text { padding: 64px 24px; order: 2; }
+  .chefs-table-image { min-height: 300px; order: 1; }
+
+  /* ---- Subpage hero ---- */
+  .subpage-hero-inner,
+  .subpage-hero-dark-inner { padding: 100px 24px 48px; }
+  .subpage-hero-2col { grid-template-columns: 1fr; gap: 20px; }
+  .subpage-hero h1,
+  .subpage-hero-dark h1 { font-size: clamp(40px, 10vw, 72px); }
+  .subpage-intro,
+  .subpage-intro-dark { font-size: 18px; }
+
+  /* ---- Cards grid ---- */
+  .cards-grid-section { padding: 0 24px 72px; }
+  .cards-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cards-grid[data-cols="2"] { grid-template-columns: 1fr; gap: 48px; }
+
+  /* ---- Filter tags ---- */
+  .filter-tags { flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+
+  /* ---- Quote section ---- */
+  .quote-section { padding: 72px 24px; }
+
+  /* ---- Gifts newsletter ---- */
+  .gifts-newsletter { padding: 72px 24px; }
+  .gifts-newsletter-form { flex-direction: column; gap: 12px; width: 100%; max-width: 100%; }
+  .gifts-newsletter-input { border-bottom: 1px solid rgba(244,239,230,0.4); padding-bottom: 14px; }
+  .gifts-newsletter-btn { padding: 14px; }
+
+  /* ---- Careers ---- */
+  .careers-hero-content { padding: 40px 24px 56px; }
+  .careers-values { padding: 64px 24px; }
+  .careers-values-inner { grid-template-columns: 1fr; gap: 40px; }
+  .careers-roles { padding: 0 24px 72px; }
+  .careers-roles h2 { margin-bottom: 40px; }
+  .role-toggle { grid-template-columns: 1fr auto; gap: 16px; }
+  .role-venue,
+  .role-type { display: none; }
+  .role-title { font-size: 22px; }
+  .role-detail { grid-template-columns: 1fr; gap: 24px; }
+
+  /* ---- Contact ---- */
+  .contact-form-section { padding: 0 24px 72px; }
+  .contact-form-inner { grid-template-columns: 1fr; gap: 56px; }
+  .contact-form-row { grid-template-columns: 1fr; gap: 0; }
+  .contact-venue-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+
+}
+
+/* ========================================
+   480px — Small mobile
+   ======================================== */
+@media (max-width: 480px) {
+
+  /* Nav */
+  .site-nav { height: 56px; }
+  .nav-wordmark { font-size: 14px; }
+
+  /* Hero heading already uses clamp — just tighten padding */
+  .hero-content { padding: 0 20px 48px; }
+  .hero-desc { padding: 0 20px 36px; }
+
+  /* Sub-nav */
+  .sub-nav { height: 52px; }
+
+  /* Typography tightening */
+  .editorial-intro-inner { padding: 56px 20px; }
+  .venues-header-inner { padding: 56px 20px; }
+  .venue-grid-inner { padding: 0 20px 56px; }
+  .awards-section-inner { padding: 56px 20px; }
+  .news-section-inner { padding: 56px 20px; }
+  .cookbooks-inner { padding: 56px 20px; }
+  .private-dining-inner { padding: 56px 20px; }
+  .newsletter-inner { padding: 56px 20px; }
+  .footer-inner { padding: 48px 20px 28px; }
+
+  /* Venue pages */
+  .venue-intro { padding: 60px 20px 52px; }
+  .montage { padding: 0 20px; }
+  .menu-cta { padding: 48px 20px; }
+  .venue-feature-dark { padding: 56px 20px; }
+  .visit-section { padding: 56px 20px; }
+  .the-room-text { padding: 48px 20px; }
+  .the-bar-text { padding: 48px 20px; }
+  .chefs-table-text { padding: 48px 20px; }
+
+  /* Subpages */
+  .subpage-hero-inner,
+  .subpage-hero-dark-inner { padding: 88px 20px 40px; }
+  .cards-grid-section { padding: 0 20px 56px; }
+  .careers-values { padding: 56px 20px; }
+  .careers-roles { padding: 0 20px 56px; }
+  .contact-form-section { padding: 0 20px 56px; }
+  .quote-section { padding: 56px 20px; }
+  .gifts-newsletter { padding: 56px 20px; }
+
+  /* Cards stacked tighter */
+  .cards-grid { gap: 36px; }
+
+  /* Gallery height */
+  .gallery-slider { height: 70vw; min-height: 220px; }
+
+}
