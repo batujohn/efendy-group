@@ -38,7 +38,7 @@
         hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       });
       // Close menu when a nav link is clicked
-      nav.querySelectorAll('.nav-link').forEach(function (link) {
+      nav.querySelectorAll('.nav-link, .venue-nav-link').forEach(function (link) {
         link.addEventListener('click', function () {
           nav.classList.remove('menu-open');
           hamburger.setAttribute('aria-label', 'Open menu');
@@ -204,6 +204,42 @@
     });
   }
 
+  /* ---------- Menu Tabs ---------- */
+  function initMenuTabs() {
+    var bars = document.querySelectorAll('.menu-tabs-bar');
+    bars.forEach(function (bar) {
+      var btns   = bar.querySelectorAll('.menu-tab-btn');
+      var dlBtns = document.querySelectorAll('.menu-dl-btn');
+      var panels = document.querySelectorAll('.menu-tab-panel');
+
+      function activate(btn) {
+        btns.forEach(function (b) { b.classList.remove('is-active'); });
+        panels.forEach(function (p) { p.classList.remove('is-active'); });
+        dlBtns.forEach(function (d) { d.classList.remove('is-visible'); });
+        btn.classList.add('is-active');
+        var tab = btn.dataset.tab;
+        var panel = document.querySelector('[data-tab-panel="' + tab + '"]');
+        if (panel) panel.classList.add('is-active');
+        var dl = document.querySelector('[data-tab-dl="' + tab + '"]');
+        if (dl) dl.classList.add('is-visible');
+      }
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () { activate(btn); });
+      });
+
+      // Activate first on load
+      if (btns[0]) activate(btns[0]);
+
+      // Hash navigation (#banquet, #drinks)
+      var hash = window.location.hash.replace('#', '');
+      if (hash) {
+        var target = bar.querySelector('[data-tab="' + hash + '"]');
+        if (target) activate(target);
+      }
+    });
+  }
+
   /* ---------- Init All ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     initFadeIn();
@@ -214,5 +250,6 @@
     initNewsletterForms();
     initContactForm();
     initImageHovers();
+    initMenuTabs();
   });
 })();
